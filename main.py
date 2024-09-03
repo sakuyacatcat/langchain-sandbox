@@ -1,15 +1,9 @@
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_groq import ChatGroq
-
-prompt = ChatPromptTemplate.from_messages(
-    [
-        (
-            "system",
-            "You are a helpful assistant that translates English to Japanese.",
-        ),
-        ("human", "{input}"),
-    ]
+from langchain.prompts import (
+    ChatPromptTemplate,
+    HumanMessagePromptTemplate,
+    SystemMessagePromptTemplate,
 )
+from langchain_groq import ChatGroq
 
 llm = ChatGroq(
     model="mixtral-8x7b-32768",
@@ -19,14 +13,17 @@ llm = ChatGroq(
     max_retries=2,
 )
 
-
-chain = prompt | llm
-
-ai_msg = chain.invoke(
-    {
-        "input_language": "en",
-        "output_language": "ja",
-        "input": "Hello, how are you?",
-    }
+chat_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(
+            "あなたは{country}料理のプロフェッショナルです"
+        ),
+        HumanMessagePromptTemplate.from_template(
+            "以下の料理のレシピを考えてください。\n\n料理名: {dish}"
+        ),
+    ]
 )
+messages = chat_prompt.format_prompt(country="イギリス", dish="肉じゃが")
+
+ai_msg = llm.invoke(messages)
 print(ai_msg.content)
