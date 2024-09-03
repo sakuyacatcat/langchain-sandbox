@@ -1,4 +1,5 @@
 from langchain.document_loaders import GitLoader
+from langchain.text_splitter import CharacterTextSplitter
 
 
 def file_filter(file_path):
@@ -14,4 +15,6 @@ loader = GitLoader(
 
 raw_docs = loader.load()
 
-print(len(raw_docs))
+text_splitter = CharacterTextSplitter(chunk_size=10, chunk_overlap=0)
+splitted_docs = text_splitter.split_documents(raw_docs)
+print(len(splitted_docs))
