@@ -1,5 +1,5 @@
-PATH_TO_FILE=main.py
-APP_NAME=app
+PATH_TO_FILE := main.py
+APP_NAME := app
 
 build:
 	docker compose build

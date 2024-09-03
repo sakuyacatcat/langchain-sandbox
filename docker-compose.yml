@@ -6,5 +6,8 @@ services:
     container_name: app
     volumes:
       - .:/app
+    environment:
+      - PATH_TO_FILE=${PATH_TO_FILE:-"main.py"}
     env_file:
       - .env
+    entrypoint: ["python", "${PATH_TO_FILE}"]
