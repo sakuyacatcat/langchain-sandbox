@@ -8,6 +8,7 @@ services:
       - .:/app
     environment:
       - PATH_TO_FILE=${PATH_TO_FILE:-"main.py"}
+      - GIT_PYTHON_REFRESH=quiet
     env_file:
       - .env
     entrypoint: ["python", "${PATH_TO_FILE}"]

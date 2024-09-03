@@ -2,3 +2,5 @@ langchain
 openai
 pydantic
 langchain-groq
+langchain-community
+GitPython
