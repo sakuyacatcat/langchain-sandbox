@@ -7,8 +7,8 @@ services:
     volumes:
       - .:/app
     environment:
-      - PATH_TO_FILE=${PATH_TO_FILE:-"main.py"}
-      - GIT_PYTHON_REFRESH=quiet
+      PATH_TO_FILE: ${PATH_TO_FILE:-"main.py"}
+      GIT_PYTHON_REFRESH: quiet
     env_file:
       - .env
-    entrypoint: ["python", "${PATH_TO_FILE}"]
+    entrypoint: ["sh", "-c", "python ${PATH_TO_FILE}"]

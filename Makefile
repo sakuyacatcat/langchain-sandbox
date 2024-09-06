@@ -5,7 +5,7 @@ build:
 	docker compose build
 
 run: build
-	docker compose run -e PATH_TO_FILE=$(PATH_TO_FILE) $(APP_NAME)
+	docker compose run -e PATH_TO_FILE=$(PATH_TO_FILE) --remove-orphans $(APP_NAME)
 
 stop:
 	docker compose down
