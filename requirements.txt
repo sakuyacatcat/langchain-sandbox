@@ -7,3 +7,4 @@ GitPython
 chromadb
 langchain-huggingface
 sentence_transformers
+langchain-experimental
